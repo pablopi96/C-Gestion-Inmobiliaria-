@@ -1,0 +1,42 @@
+﻿<Window x:Name="FrmVender1" x:Class="ObligatorioInmobiliaria2014MMP.FrmVender"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Vender/Alquilar" Height="673.08" Width="644.681" Loaded="FrmVender1_Loaded" Icon="RealizarVenta.png" Background="{x:Null}" Opacity="0.995" AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterScreen">
+    <Grid Margin="0,0,0,-33">
+    	<Grid.ColumnDefinitions>
+    		<ColumnDefinition Width="131*"/>
+    		<ColumnDefinition Width="30*"/>
+    	</Grid.ColumnDefinitions>
+        <Rectangle Fill="White" HorizontalAlignment="Left" Height="591.265" VerticalAlignment="Top" Width="644.681" Margin="0,39.208,0,0" Grid.ColumnSpan="2"/>
+
+        <Label Content="Seleccionar Cliente:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="104,91.688,0,0"/>
+        <Label Content="Seleccionar Inmueble:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="422,91.688,0,0" Grid.ColumnSpan="2"/>
+        <DataGrid x:Name="DtgSeleccionarCliente" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,122.734,0,0" Height="395" Width="290" SelectionChanged="DataGrid_SelectionChanged" GotFocus="DtgSeleccionarCliente_GotFocus" Loaded="DtgSeleccionarCliente_Loaded" BorderBrush="#FF3399FF"/>
+        <DataGrid x:Name="DtgSeleccionarCasa" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="337,122.734,0,0" Height="189" Width="290" GotFocus="DtgSeleccionarInmueble_GotFocus" SelectionChanged="DtgSeleccionarCasa_SelectionChanged" BorderBrush="#FF3399FF" Grid.ColumnSpan="2"/>
+        <Button x:Name="BtnVender" Content="Vender" HorizontalAlignment="Left" VerticalAlignment="Top" Width="94" Margin="206,567.734,0,0" Height="41" Background="#FF3399FF" Foreground="#FFF5F1F1" FontWeight="Bold" Click="Button_Click" IsDefault="True"/>
+        <Button x:Name="BtnAlquilar" Content="Alquilar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="94" Margin="337,567.734,0,0" Height="41" Background="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" FontWeight="Bold" Foreground="#FFFBF9F9" Click="BtnAlquilar_Click"/>
+        <TextBox x:Name="TxtCliente" HorizontalAlignment="Left" Height="23" Margin="10,522.734,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="290" Text="ID Cliente..." GotFocus="TxtCliente_GotFocus">
+            <TextBox.BorderBrush>
+                <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
+                    <GradientStop Color="#FFABADB3" Offset="0.05"/>
+                    <GradientStop Color="#FFE2E3EA" Offset="0.07"/>
+                    <GradientStop Color="#FF3399FF" Offset="1"/>
+                </LinearGradientBrush>
+            </TextBox.BorderBrush>
+        </TextBox>
+        <TextBox x:Name="TxtInmueble" HorizontalAlignment="Left" Height="23" Margin="337,522.734,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="290" TextChanged="TxtInmueble_TextChanged" Text="ID Inmueble..." GotFocus="TxtInmueble_GotFocus" Grid.ColumnSpan="2">
+            <TextBox.BorderBrush>
+                <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
+                    <GradientStop Color="#FFABADB3" Offset="0.05"/>
+                    <GradientStop Color="#FFE2E3EA" Offset="0.07"/>
+                    <GradientStop Color="#FF3399FF" Offset="1"/>
+                </LinearGradientBrush>
+            </TextBox.BorderBrush>
+        </TextBox>
+        <DataGrid x:Name="DtgSeleccionarApto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="337,327.734,0,0" Height="190" Width="290" SelectionChanged="DtgSeleccionarApto_SelectionChanged" GotFocus="DtgSeleccionarApto_GotFocus" BorderBrush="#FF3399FF" Grid.ColumnSpan="2"/>
+        <Button Content="&lt;&lt;" HorizontalAlignment="Right" Height="25" Margin="-0.319,5.208,479.714,0" VerticalAlignment="Top" Width="45" Foreground="White" Background="#66000000" Click="Button_Click_1" BorderBrush="{x:Null}"/>
+        <Rectangle Fill="#FF3399FF" HorizontalAlignment="Left" Height="34" Margin="-0.319,39.208,0,0" VerticalAlignment="Top" Width="644.681" Grid.ColumnSpan="2"/>
+        <Label Content="Operaciones" HorizontalAlignment="Left" Height="54.061" Margin="9.682,30.208,0,0" VerticalAlignment="Top" Width="206.785" Foreground="White" FontSize="18.667" FontFamily="Kozuka Gothic Pro EL"/>
+
+    </Grid>
+</Window>

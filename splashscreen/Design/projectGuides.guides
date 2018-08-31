@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<ProjectGuidesConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ProjectItemGuides>
+    <ProjectItemGuide TargetFile="frmMenu.xaml">
+      <GuideModels>
+        <GuideModel>
+          <Guides>
+            <Guide Alignment="Left" Position="336" />
+            <Guide Alignment="Top" Position="420" />
+            <Guide Alignment="Top" Position="284" />
+            <Guide Alignment="Top" Position="236" />
+            <Guide Alignment="Left" Position="708" />
+            <Guide Alignment="Top" Position="565" />
+            <Guide Alignment="Top" Position="163" />
+            <Guide Alignment="Left" Position="198" />
+          </Guides>
+        </GuideModel>
+      </GuideModels>
+    </ProjectItemGuide>
+  </ProjectItemGuides>
+</ProjectGuidesConfiguration>

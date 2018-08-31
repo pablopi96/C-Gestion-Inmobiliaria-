@@ -1,0 +1,16 @@
+﻿<Window
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	x:Class="ObligatorioInmobiliaria2014MMP.Window1"
+	x:Name="Window"
+	Title="Window1"
+	Width="661" Height="432" Background="{x:Null}" WindowStyle="None" AllowsTransparency="True" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" Icon="230x230.png">
+
+	<Grid x:Name="LayoutRoot">
+		<Rectangle HorizontalAlignment="Left" Height="433" Stroke="Black" VerticalAlignment="Top" Width="660" StrokeThickness="0" Loaded="Rectangle_Loaded">
+			<Rectangle.Fill>
+				<ImageBrush ImageSource="660x433.png"/>
+			</Rectangle.Fill>
+		</Rectangle>
+	</Grid>
+</Window>

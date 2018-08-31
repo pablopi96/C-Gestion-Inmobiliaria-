@@ -1,0 +1,836 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="ObligatorioInmobiliaria2014MMP.frmMenu"
+        Title="MainWindow" Height="621" Width="727.5" AllowsTransparency="True" WindowStyle="None" Background="{x:Null}" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded_1" Icon="230x230.png">
+    <Window.Resources>
+        <Storyboard x:Key="SlideRed"/>
+        <Storyboard x:Key="OnLoaded1"/>
+        <Storyboard x:Key="OnMouseEnter1"/>
+        <Style x:Key="ButtonFocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle StrokeDashArray="1 2" StrokeThickness="1" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" SnapsToDevicePixels="true" Margin="2"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <LinearGradientBrush x:Key="ButtonNormalBackground" EndPoint="0,1" StartPoint="0,0">
+            <GradientStop Color="#F3F3F3" Offset="0"/>
+            <GradientStop Color="#EBEBEB" Offset="0.5"/>
+            <GradientStop Color="#DDDDDD" Offset="0.5"/>
+            <GradientStop Color="#CDCDCD" Offset="1"/>
+        </LinearGradientBrush>
+        <SolidColorBrush x:Key="ButtonNormalBorder" Color="#FF707070"/>
+        <Style x:Key="ButtonStyle1" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource ButtonNormalBackground}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource ButtonNormalBorder}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <ControlTemplate.Resources>
+                            <Storyboard x:Key="Storyboard1"/>
+                            <Storyboard x:Key="SlideClientes">
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.Opacity)" Storyboard.TargetName="rectangle" RepeatBehavior="Forever">
+                                    <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="1"/>
+                                    <EasingDoubleKeyFrame KeyTime="0:0:1.2" Value="0"/>
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.BlurRadius)" Storyboard.TargetName="rectangle">
+                                    <EasingDoubleKeyFrame KeyTime="0" Value="30"/>
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="40"/>
+                                    <EasingDoubleKeyFrame KeyTime="0:0:1.2" Value="30"/>
+                                </DoubleAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </ControlTemplate.Resources>
+                        <Grid HorizontalAlignment="Left" Height="117" Width="117" Margin="0,0,-78,0">
+                            <Rectangle x:Name="rectangle" HorizontalAlignment="Left" Height="117" RadiusY="13.5" RadiusX="13.5" Stroke="#FF96CEB5" StrokeThickness="9" VerticalAlignment="Top" Width="117">
+                                <Rectangle.Effect>
+                                    <DropShadowEffect BlurRadius="40" Color="#FF5BFFFF" ShadowDepth="0" Opacity="0"/>
+                                </Rectangle.Effect>
+                                <Rectangle.Fill>
+                                    <ImageBrush ImageSource="Clientes.png"/>
+                                </Rectangle.Fill>
+                            </Rectangle>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True" SourceName="rectangle">
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard x:Name="SlideClientes_BeginStoryboard" Storyboard="{StaticResource SlideClientes}"/>
+                                </Trigger.EnterActions>
+                                <Setter Property="StrokeThickness" TargetName="rectangle" Value="2"/>
+                                <Setter Property="Stroke" TargetName="rectangle" Value="White"/>
+                                <Setter Property="Effect" TargetName="rectangle">
+                                    <Setter.Value>
+                                        <DropShadowEffect BlurRadius="40" Color="#FF5BFFFF" ShadowDepth="0"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="true"/>
+                            <Trigger Property="ToggleButton.IsChecked" Value="true"/>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Foreground" Value="#ADADAD"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Storyboard x:Key="SlideClientesOut">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="rectangle">
+                <EasingDoubleKeyFrame KeyTime="0" Value="1.5"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="rectangle1">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="169.418"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="rectangle2">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="169.418"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="169.418"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="textBlock">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="169.418"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="textBlock1">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="169.418"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Height)" Storyboard.TargetName="textBlock1">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="2.663"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="102"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Height)" Storyboard.TargetName="rectangle2">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="21.965"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="125"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="rectangle2">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0.92"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="rectangle2">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="-5"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="SlideClienteIn">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="rectangle1">
+                <EasingDoubleKeyFrame KeyTime="0" Value="168.167"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0.083"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="rectangle2">
+                <EasingDoubleKeyFrame KeyTime="0" Value="168.167"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="168.167"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0.083"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="textBlock">
+                <EasingDoubleKeyFrame KeyTime="0" Value="168.167"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0.083"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="textBlock1">
+                <EasingDoubleKeyFrame KeyTime="0" Value="168.167"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="168.167"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0.083"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Height)" Storyboard.TargetName="rectangle2">
+                <EasingDoubleKeyFrame KeyTime="0" Value="114"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="23"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Height)" Storyboard.TargetName="textBlock1">
+                <EasingDoubleKeyFrame KeyTime="0" Value="103"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="2"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Style x:Key="ButtonStyle2" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource ButtonNormalBackground}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource ButtonNormalBorder}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <ControlTemplate.Resources>
+                            <Storyboard x:Key="Storyboard1"/>
+                            <Storyboard x:Key="SlideClientes">
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.Opacity)" Storyboard.TargetName="rectangle" RepeatBehavior="Forever">
+                                    <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="1"/>
+                                    <EasingDoubleKeyFrame KeyTime="0:0:1.2" Value="0"/>
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.BlurRadius)" Storyboard.TargetName="rectangle">
+                                    <EasingDoubleKeyFrame KeyTime="0" Value="30"/>
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="40"/>
+                                    <EasingDoubleKeyFrame KeyTime="0:0:1.2" Value="30"/>
+                                </DoubleAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </ControlTemplate.Resources>
+                        <Grid HorizontalAlignment="Left" Height="117" Width="117" Margin="0,0,-78,0">
+                            <Rectangle x:Name="rectangle" HorizontalAlignment="Left" Height="117" RadiusY="13.5" RadiusX="13.5" Stroke="#FFFFCB5B" StrokeThickness="9" VerticalAlignment="Top" Width="117">
+                                <Rectangle.Effect>
+                                    <DropShadowEffect BlurRadius="40" Color="#FF5BFFFF" ShadowDepth="0" Opacity="0"/>
+                                </Rectangle.Effect>
+                                <Rectangle.Fill>
+                                    <ImageBrush ImageSource="117x117-Inmuebles.png"/>
+                                </Rectangle.Fill>
+                            </Rectangle>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True" SourceName="rectangle">
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard x:Name="SlideClientes_BeginStoryboard" Storyboard="{StaticResource SlideClientes}"/>
+                                </Trigger.EnterActions>
+                                <Setter Property="StrokeThickness" TargetName="rectangle" Value="2"/>
+                                <Setter Property="Stroke" TargetName="rectangle" Value="White"/>
+                                <Setter Property="Effect" TargetName="rectangle">
+                                    <Setter.Value>
+                                        <DropShadowEffect BlurRadius="40" Color="#FF5BFFFF" ShadowDepth="0"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="true"/>
+                            <Trigger Property="ToggleButton.IsChecked" Value="true"/>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Foreground" Value="#ADADAD"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ButtonStyle3" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource ButtonNormalBackground}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource ButtonNormalBorder}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <ControlTemplate.Resources>
+                            <Storyboard x:Key="Storyboard1"/>
+                            <Storyboard x:Key="SlideClientes">
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.Opacity)" Storyboard.TargetName="rectangle" RepeatBehavior="Forever">
+                                    <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="1"/>
+                                    <EasingDoubleKeyFrame KeyTime="0:0:1.2" Value="0"/>
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.BlurRadius)" Storyboard.TargetName="rectangle">
+                                    <EasingDoubleKeyFrame KeyTime="0" Value="30"/>
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="40"/>
+                                    <EasingDoubleKeyFrame KeyTime="0:0:1.2" Value="30"/>
+                                </DoubleAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </ControlTemplate.Resources>
+                        <Grid HorizontalAlignment="Left" Height="117" Width="117" Margin="0,0,-78,0">
+                            <Rectangle x:Name="rectangle" HorizontalAlignment="Left" Height="117" RadiusY="13.5" RadiusX="13.5" Stroke="#FF31B883" StrokeThickness="9" VerticalAlignment="Top" Width="117" Margin="0">
+                                <Rectangle.Effect>
+                                    <DropShadowEffect BlurRadius="40" Color="#FF5BFFFF" ShadowDepth="0" Opacity="0"/>
+                                </Rectangle.Effect>
+                                <Rectangle.Fill>
+                                    <ImageBrush ImageSource="RealizarVenta.png"/>
+                                </Rectangle.Fill>
+                            </Rectangle>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True" SourceName="rectangle">
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard x:Name="SlideClientes_BeginStoryboard" Storyboard="{StaticResource SlideClientes}"/>
+                                </Trigger.EnterActions>
+                                <Setter Property="StrokeThickness" TargetName="rectangle" Value="2"/>
+                                <Setter Property="Stroke" TargetName="rectangle" Value="White"/>
+                                <Setter Property="Effect" TargetName="rectangle">
+                                    <Setter.Value>
+                                        <DropShadowEffect BlurRadius="40" Color="#FF5BFFFF" ShadowDepth="0"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="true"/>
+                            <Trigger Property="ToggleButton.IsChecked" Value="true"/>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Foreground" Value="#ADADAD"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ButtonStyle4" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource ButtonNormalBackground}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource ButtonNormalBorder}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <ControlTemplate.Resources>
+                            <Storyboard x:Key="Storyboard1"/>
+                            <Storyboard x:Key="SlideClientes">
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.Opacity)" Storyboard.TargetName="rectangle" RepeatBehavior="Forever">
+                                    <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="1"/>
+                                    <EasingDoubleKeyFrame KeyTime="0:0:1.2" Value="0"/>
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.BlurRadius)" Storyboard.TargetName="rectangle">
+                                    <EasingDoubleKeyFrame KeyTime="0" Value="30"/>
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="40"/>
+                                    <EasingDoubleKeyFrame KeyTime="0:0:1.2" Value="30"/>
+                                </DoubleAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </ControlTemplate.Resources>
+                        <Grid HorizontalAlignment="Left" Height="117" Width="117" Margin="0,0,-78,0">
+                            <Rectangle x:Name="rectangle" HorizontalAlignment="Left" Height="117" RadiusY="13.5" RadiusX="13.5" Stroke="#FFFF6239" StrokeThickness="9" VerticalAlignment="Top" Width="117" Margin="0">
+                                <Rectangle.Effect>
+                                    <DropShadowEffect BlurRadius="40" Color="#FF5BFFFF" ShadowDepth="0" Opacity="0"/>
+                                </Rectangle.Effect>
+                                <Rectangle.Fill>
+                                    <ImageBrush ImageSource="Visita.png"/>
+                                </Rectangle.Fill>
+                            </Rectangle>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True" SourceName="rectangle">
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard x:Name="SlideClientes_BeginStoryboard" Storyboard="{StaticResource SlideClientes}"/>
+                                </Trigger.EnterActions>
+                                <Setter Property="StrokeThickness" TargetName="rectangle" Value="2"/>
+                                <Setter Property="Stroke" TargetName="rectangle" Value="White"/>
+                                <Setter Property="Effect" TargetName="rectangle">
+                                    <Setter.Value>
+                                        <DropShadowEffect BlurRadius="40" Color="#FF5BFFFF" ShadowDepth="0"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="true"/>
+                            <Trigger Property="ToggleButton.IsChecked" Value="true"/>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Foreground" Value="#ADADAD"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Storyboard x:Key="SlideInmueblesOut">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="rectangle1_Copy">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="168.998"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="rectangle2_Copy">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="168.998"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="textBlock_Copy">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="168.998"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="textBlock1_Copy">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="168.998"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Height)" Storyboard.TargetName="rectangle2_Copy">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="21.965"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="113"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Height)" Storyboard.TargetName="textBlock1_Copy">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="20"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="104"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="SlideInmueblesIn">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="rectangle1_Copy">
+                <EasingDoubleKeyFrame KeyTime="0" Value="168.751"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="-0.667"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="rectangle2_Copy">
+                <EasingDoubleKeyFrame KeyTime="0" Value="168.751"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="168.751"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="-0.667"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="textBlock_Copy">
+                <EasingDoubleKeyFrame KeyTime="0" Value="168.751"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="-0.667"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="textBlock1_Copy">
+                <EasingDoubleKeyFrame KeyTime="0" Value="168.751"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="168.751"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="-0.667"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Height)" Storyboard.TargetName="textBlock1_Copy">
+                <EasingDoubleKeyFrame KeyTime="0" Value="107"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="23"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Height)" Storyboard.TargetName="rectangle2_Copy">
+                <EasingDoubleKeyFrame KeyTime="0" Value="113"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="25"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="SlideOperacionesOut">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="rectangle1_Copy1">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="168.5"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="rectangle2_Copy1">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="168.5"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="textBlock_Copy1">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="168.5"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="textBlock1_Copy1">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="168.5"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Height)" Storyboard.TargetName="rectangle2_Copy1">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="24"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="89"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Height)" Storyboard.TargetName="textBlock1_Copy1">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="24"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="83"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="SlideOperacionesIn">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="rectangle1_Copy1">
+                <EasingDoubleKeyFrame KeyTime="0" Value="168"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="rectangle2_Copy1">
+                <EasingDoubleKeyFrame KeyTime="0" Value="168"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="168"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="textBlock_Copy1">
+                <EasingDoubleKeyFrame KeyTime="0" Value="168"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="textBlock1_Copy1">
+                <EasingDoubleKeyFrame KeyTime="0" Value="168"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="168"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Height)" Storyboard.TargetName="textBlock1_Copy1">
+                <EasingDoubleKeyFrame KeyTime="0" Value="83"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="22"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Height)" Storyboard.TargetName="rectangle2_Copy1">
+                <EasingDoubleKeyFrame KeyTime="0" Value="90"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="24"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="SlideVentasOut">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="rectangle1_Copy2">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="168.084"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="rectangle2_Copy2">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="168.084"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="textBlock_Copy2">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="168.084"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="textBlock1_Copy2">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="168.084"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Height)" Storyboard.TargetName="textBlock1_Copy2">
+                <EasingDoubleKeyFrame KeyTime="0" Value="25"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="25"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="108"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Height)" Storyboard.TargetName="rectangle2_Copy2">
+                <EasingDoubleKeyFrame KeyTime="0" Value="21.965"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="21.965"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="93"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="SlideVisitasIn">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="rectangle1_Copy2">
+                <EasingDoubleKeyFrame KeyTime="0" Value="168.5"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="rectangle2_Copy2">
+                <EasingDoubleKeyFrame KeyTime="0" Value="168.5"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="168.5"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="textBlock_Copy2">
+                <EasingDoubleKeyFrame KeyTime="0" Value="168.5"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="textBlock1_Copy2">
+                <EasingDoubleKeyFrame KeyTime="0" Value="168.5"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="168.5"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Height)" Storyboard.TargetName="textBlock1_Copy2">
+                <EasingDoubleKeyFrame KeyTime="0" Value="80"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="21"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Height)" Storyboard.TargetName="rectangle2_Copy2">
+                <EasingDoubleKeyFrame KeyTime="0" Value="92"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="24"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="SlideWindow">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="rectangle4">
+                <EasingDoubleKeyFrame KeyTime="0" Value="-501.975"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="rectangle5">
+                <EasingDoubleKeyFrame KeyTime="0" Value="-501.975"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="rectangle3">
+                <EasingDoubleKeyFrame KeyTime="0" Value="-552"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="-552"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="2"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Style x:Key="ButtonStyle5" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource ButtonNormalBackground}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource ButtonNormalBorder}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsKeyboardFocused" Value="true"/>
+                            <Trigger Property="ToggleButton.IsChecked" Value="true"/>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Foreground" Value="#ADADAD"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ButtonStyle6" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource ButtonNormalBackground}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource ButtonNormalBorder}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Themes:ButtonChrome x:Name="Chrome" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}" RenderMouseOver="{TemplateBinding IsMouseOver}" RenderPressed="{TemplateBinding IsPressed}" RenderDefaulted="{TemplateBinding IsDefaulted}" SnapsToDevicePixels="true" RenderTransformOrigin="0.5,0.5">
+                            <Themes:ButtonChrome.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="45"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Themes:ButtonChrome.RenderTransform>
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" RenderTransformOrigin="0.5,0.5">
+                                <ContentPresenter.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform/>
+                                        <RotateTransform Angle="-45"/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </ContentPresenter.RenderTransform>
+                            </ContentPresenter>
+                        </Themes:ButtonChrome>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsKeyboardFocused" Value="true">
+                                <Setter Property="RenderDefaulted" TargetName="Chrome" Value="true"/>
+                            </Trigger>
+                            <Trigger Property="ToggleButton.IsChecked" Value="true">
+                                <Setter Property="RenderPressed" TargetName="Chrome" Value="true"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Foreground" Value="#ADADAD"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="btnClientes">
+            <BeginStoryboard x:Name="SlideClientesOut_BeginStoryboard" Storyboard="{StaticResource SlideClientesOut}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="Mouse.MouseLeave" SourceName="btnClientes">
+            <BeginStoryboard x:Name="SlideClienteIn_BeginStoryboard" Storyboard="{StaticResource SlideClienteIn}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="btnInmuebles">
+            <BeginStoryboard x:Name="SlideInmueblesOut_BeginStoryboard" Storyboard="{StaticResource SlideInmueblesOut}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="Mouse.MouseLeave" SourceName="btnInmuebles">
+            <BeginStoryboard x:Name="SlideInmueblesIn_BeginStoryboard" Storyboard="{StaticResource SlideInmueblesIn}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="btnOperaciones">
+            <BeginStoryboard x:Name="SlideOperacionesOut_BeginStoryboard" Storyboard="{StaticResource SlideOperacionesOut}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="Mouse.MouseLeave" SourceName="btnOperaciones">
+            <BeginStoryboard x:Name="SlideOperacionesIn_BeginStoryboard" Storyboard="{StaticResource SlideOperacionesIn}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="btnVisitas">
+            <BeginStoryboard x:Name="SlideVentasOut_BeginStoryboard" Storyboard="{StaticResource SlideVentasOut}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="Mouse.MouseLeave" SourceName="btnVisitas">
+            <BeginStoryboard x:Name="SlideVisitasIn_BeginStoryboard" Storyboard="{StaticResource SlideVisitasIn}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded"/>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded"/>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard x:Name="SlideWindow_BeginStoryboard" Storyboard="{StaticResource SlideWindow}"/>
+        </EventTrigger>
+    </Window.Triggers>
+    <Grid Margin="-6.5,30,-156.5,-287">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="45*"/>
+            <ColumnDefinition Width="54*"/>
+            <ColumnDefinition Width="581*"/>
+        </Grid.ColumnDefinitions>
+        <Rectangle Grid.Column="2" Fill="#FF444444" HorizontalAlignment="Left" Height="92.999" Margin="4.93,-21.161,0,0" RadiusY="4.022" RadiusX="4.022" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="71.951" Opacity="0.385"/>
+
+        <Rectangle x:Name="rectangle3" Grid.ColumnSpan="3" Fill="Black" HorizontalAlignment="Left" Height="521.839" Margin="15.955,32.661,0,0" Stroke="#FFAE2E2E" VerticalAlignment="Top" Width="697" RadiusY="24.5" RadiusX="24.5" Opacity="0.695" RenderTransformOrigin="0.5,0.5">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Button x:Name="button" Content="X" Grid.Column="2" HorizontalAlignment="Left" Margin="45,-17,0,877" Width="28" Background="#FFF70A0A" BorderBrush="White" Foreground="White" Opacity="0.795" RenderTransformOrigin="0.5,0.5" Click="button_Click">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+        <Rectangle x:Name="rectangle4" HorizontalAlignment="Left" Height="206" Margin="31,56.661,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="680.5" Fill="#FF99A9AC" Opacity="0.7" Grid.ColumnSpan="3" RenderTransformOrigin="0.5,0.5">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Rectangle x:Name="rectangle5" Grid.Column="2" HorizontalAlignment="Left" Height="230" Margin="73.354,32.661,0,0" RadiusY="13.5" RadiusX="13.5" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="230" Opacity="0.9" RenderTransformOrigin="0.5,0.5">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="230x230.png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+
+        <Rectangle Fill="#FF444444" HorizontalAlignment="Left" Height="582" Margin="36.596,7.5,0,0" Stroke="Black" VerticalAlignment="Top" Width="129.786" RadiusY="13.5" RadiusX="13.5" Grid.Column="1" Grid.ColumnSpan="2" StrokeThickness="0"/>
+        <Rectangle x:Name="rectangle1" Fill="Gray" HorizontalAlignment="Left" Height="20.5" Margin="1.811,48.666,0,0" Stroke="Gray" VerticalAlignment="Top" Width="169.499" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="3">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Rectangle x:Name="rectangle2" Fill="#FF282B3E" HorizontalAlignment="Left" Height="21.965" Margin="36.596,48.864,0,0" Stroke="#FFBBDEB3" StrokeThickness="0" VerticalAlignment="Top" Width="78.88" Opacity="0.495" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2" Grid.Column="1">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="23.832" Margin="41.249,45.334,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60.25" FontFamily="Kozuka Gothic Pr6N R" FontSize="14.667" Foreground="#FF5BFFFF" RenderTransformOrigin="0.5,0.5" Grid.Column="1" Grid.ColumnSpan="2">
+            <TextBlock.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBlock.RenderTransform><Run Language="es-uy" Text="Clientes"/></TextBlock>
+        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Height="20.663" Margin="42.791,50.166,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="72.667" Foreground="White" FontFamily="Kozuka Gothic Pr6N R" FontSize="10.667" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2" Grid.Column="1">
+            <TextBlock.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBlock.RenderTransform><Run Language="es-uy"/><LineBreak/><Run Language="es-uy" Text="Nos permite:"/><LineBreak/><Run Language="es-uy" Text="   -Ingresar."/><LineBreak/><Run Language="es-uy" Text="   -Actualizar."/><LineBreak/><Run Language="es-uy" Text="   -Consultar."/></TextBlock>
+        <Rectangle x:Name="rectangle1_Copy" Fill="Gray" HorizontalAlignment="Left" Height="20.5" Margin="2.103,189.489,0,0" Stroke="Gray" VerticalAlignment="Top" Width="169.499" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="3">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Rectangle x:Name="rectangle2_Copy" Fill="#FF282B3E" HorizontalAlignment="Left" Height="21.965" Margin="36.992,189.687,0,0" Stroke="#FFBBDEB3" StrokeThickness="0" VerticalAlignment="Top" Width="78.88" Opacity="0.495" RenderTransformOrigin="0.5,0.5" Grid.Column="1" Grid.ColumnSpan="2">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Height="23.832" Margin="41.631,186.157,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="71.5" FontFamily="Kozuka Gothic Pr6N R" FontSize="14.667" Foreground="#FF5BFFFF" RenderTransformOrigin="0.5,0.5" Grid.Column="1" Text="Inmuebles" Grid.ColumnSpan="2">
+            <TextBlock.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBlock.RenderTransform></TextBlock>
+        <TextBlock x:Name="textBlock1_Copy" HorizontalAlignment="Left" Height="20" Margin="43.169,190.322,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="72.667" Foreground="White" FontFamily="Kozuka Gothic Pr6N R" FontSize="10.667" RenderTransformOrigin="0.5,0.5" Grid.Column="1" Grid.ColumnSpan="2">
+            <TextBlock.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBlock.RenderTransform><Run Language="es-uy"/><LineBreak/><Run Language="es-uy" Text="Nos permite:"/><LineBreak/><Run Language="es-uy" Text="   -Ingresar."/><LineBreak/><Run Language="es-uy" Text="   -Actualizar."/><LineBreak/><Run Language="es-uy" Text="   -Consultar."/></TextBlock>
+        <Rectangle x:Name="rectangle1_Copy1" Fill="Gray" HorizontalAlignment="Left" Height="20.5" Margin="2.603,330.226,0,0" Stroke="Gray" VerticalAlignment="Top" Width="169.499" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="3">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Rectangle x:Name="rectangle2_Copy1" Fill="#FF282B3E" HorizontalAlignment="Left" Height="24" Margin="26.548,330.424,0,0" Stroke="#FFBBDEB3" StrokeThickness="0" VerticalAlignment="Top" Width="90.944" Opacity="0.495" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2" Grid.Column="1">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <TextBlock x:Name="textBlock_Copy1" HorizontalAlignment="Left" Height="23.832" Margin="30.798,326.894,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="82.833" FontFamily="Kozuka Gothic Pr6N R" FontSize="14.667" Foreground="#FF5BFFFF" RenderTransformOrigin="0.5,0.5" Grid.Column="1" Text="Operaciones" Grid.ColumnSpan="2">
+            <TextBlock.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBlock.RenderTransform></TextBlock>
+        <TextBlock x:Name="textBlock1_Copy1" HorizontalAlignment="Left" Height="24" Margin="40.596,331.059,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="79.24" Foreground="White" FontFamily="Kozuka Gothic Pr6N R" FontSize="10.667" RenderTransformOrigin="0.5,0.5" Grid.Column="1" Grid.ColumnSpan="2">
+            <TextBlock.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBlock.RenderTransform><Run Language="es-uy"/><LineBreak/><Run Language="es-uy" Text="Nos permite:"/><LineBreak/><Run Language="es-uy" Text="     -Vender."/><LineBreak/><Run Language="es-uy" Text="     -Alquila."/></TextBlock>
+        <Rectangle x:Name="rectangle1_Copy2" Fill="Gray" HorizontalAlignment="Left" Height="20.5" Margin="2.103,471.63,0,0" Stroke="Gray" VerticalAlignment="Top" Width="169.499" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="3">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Rectangle x:Name="rectangle2_Copy2" Fill="#FF282B3E" HorizontalAlignment="Left" Height="21.965" Margin="36.992,471.828,0,0" Stroke="#FFBBDEB3" StrokeThickness="0" VerticalAlignment="Top" Width="78.88" Opacity="0.495" RenderTransformOrigin="0.5,0.5" Grid.Column="1" Grid.ColumnSpan="2">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <TextBlock x:Name="textBlock_Copy2" HorizontalAlignment="Left" Height="23.832" Margin="52.973,468.298,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="71.5" FontFamily="Kozuka Gothic Pr6N R" FontSize="14.667" Foreground="#FF5BFFFF" RenderTransformOrigin="0.5,0.5" Grid.Column="1" Text="Visitas" Grid.ColumnSpan="2">
+            <TextBlock.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBlock.RenderTransform></TextBlock>
+        <TextBlock x:Name="textBlock1_Copy2" HorizontalAlignment="Left" Height="25" Margin="43.169,472.463,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="72.667" Foreground="White" FontFamily="Kozuka Gothic Pr6N R" FontSize="10.667" RenderTransformOrigin="0.5,0.5" Grid.Column="1" Grid.ColumnSpan="2">
+            <TextBlock.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBlock.RenderTransform><Run Language="es-uy"/><LineBreak/><Run Language="es-uy" Text="Nos permite:"/><LineBreak/><Run Language="es-uy" Text="   -Ingresar."/><LineBreak/><Run Language="es-uy" Text="   -Consultar."/></TextBlock>
+        <Rectangle x:Name="rectangle" Grid.ColumnSpan="2" Fill="#FF444444" HorizontalAlignment="Left" Height="582" Margin="6.5,7.5,0,0" Stroke="Black" VerticalAlignment="Top" Width="120.44" RadiusY="13.5" RadiusX="13.5" StrokeThickness="0" RenderTransformOrigin="0.5,0.5">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Button x:Name="btnClientes" Grid.ColumnSpan="2" Content="Button" HorizontalAlignment="Left" Margin="0.57,32.661,0,0" VerticalAlignment="Top" Width="117" Style="{DynamicResource ButtonStyle1}" Grid.Column="1" Click="btnClientes_Click"/>
+        <Button x:Name="btnInmuebles" Content="Button" HorizontalAlignment="Left" Margin="5.18,173.5,0,0" VerticalAlignment="Top" Width="115.666" Style="{DynamicResource ButtonStyle2}" Height="117" Background="#FF912626" Grid.ColumnSpan="2" Grid.Column="1" Click="btnInmuebles_Click"/>
+        <Button x:Name="btnOperaciones" Content="Button" HorizontalAlignment="Left" Margin="4.846,314.339,0,0" VerticalAlignment="Top" Width="117" Style="{DynamicResource ButtonStyle3}" Grid.ColumnSpan="2" Grid.Column="1" Click="btnOperaciones_Click"/>
+        <Button x:Name="btnVisitas" Content="Button" HorizontalAlignment="Left" Margin="5.48,455.178,0,0" VerticalAlignment="Top" Width="117" Style="{DynamicResource ButtonStyle4}" Grid.ColumnSpan="2" Grid.Column="1" Click="btnVisitas_Click"/>
+        <Button Content="?" HorizontalAlignment="Left" Margin="9,-17,0,877" Width="28" Background="#FF5F2C6A" Foreground="#FFF3FF00" Grid.Column="2" BorderBrush="White" Opacity="0.8" Click="Button_Click_1" Height="18" VerticalAlignment="Bottom"/>
+        <Label x:Name="LblHora" Content="   Hora" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="2" Margin="256,90,0,0" FontSize="72" Width="264" FontFamily="Levenim MT" Foreground="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}" Height="122"/>
+
+    </Grid>
+</Window>
